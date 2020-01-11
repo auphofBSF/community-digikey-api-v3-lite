@@ -37,9 +37,9 @@ VERSION = "0.1.0"
 # 
 
 REQUIRES = [
-    "community-digikey-api-client-productinformation @ git+https://github.com/auphofBSF/community-digikey-api-productinformation.git"
-    ,"community-digikey-api-client-ordersupport @ git+https://github.com/auphofBSF/community-digikey-api-ordersupport.git",
-    ,'digikey-api@ git+https://github.com/auphofBSF/digikey-api/@dev20w02apiV3'
+    # "community-digikey-api-client-productinformation @ git+https://github.com/auphofBSF/community-digikey-api-productinformation.git"
+    # ,"community-digikey-api-client-ordersupport @ git+https://github.com/auphofBSF/community-digikey-api-ordersupport.git"
+    # ,'digikey-api@ git+https://github.com/auphofBSF/digikey-api/@dev20w02apiV3'
 ]
     
 
@@ -51,7 +51,8 @@ setup(
     url="https://github.com/auphofBSF/community-digikey-api-v3-lite",
     keywords=["Swagger", "Digikey Api"],
     install_requires=REQUIRES,
-    packages=find_packages(),
+    package_dir={'': 'src'},
+    packages=find_packages(), #['digikey_api_v3_lite'], 
     include_package_data=True,
     long_description="""\
        This wrapper handles the Oauth2 protocol by leveraging the work done by @peeter123 in the digikey-apiV2 to access part information.

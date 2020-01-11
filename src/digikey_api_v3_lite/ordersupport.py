@@ -11,7 +11,7 @@ import digikey_ordersupport as digikey_ordersupport
 
 from digikey_ordersupport.rest import ApiException
 
-class Digikey_OrderDetails():
+class OrderDetails():
     def __init__(self):
         # Configure API key authorization: apiKeySecurity
         configuration = digikey_ordersupport.Configuration()

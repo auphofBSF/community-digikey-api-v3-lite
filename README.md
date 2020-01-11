@@ -39,7 +39,7 @@ Python 3.4+
 Python Package GitPython
 Java 1.8+
 
-## Installation & Usage
+## Installation
 
 `pip install -e .`
 
@@ -50,3 +50,62 @@ pip install -e git+https://github.com/auphofBSF/community-digikey-api-build-pyth
 ```
 (you may need to run `pip` with root permission: `sudo pip install -e git+https://github.com/auphofBSF/community-digikey-api-build-python-client.git`
 
+
+## Usage
+
+```python
+"""
+Example of using digikey_api_v3_lite
+"""
+
+import os
+import pandas as pd
+import digikey_api_v3_lite  as digiAPI
+
+from pprint import pprint
+
+
+
+os.environ['DIGIKEY_CLIENT_ID'] = '<DIGIKEY_APPLICATION_ID>'
+os.environ['DIGIKEY_CLIENT_SECRET'] = '<DIGIKEY_SECRET>'
+os.environ['DIGIKEY_STORAGE_PATH'] = r'<PATH_TO_THE_TOKEN_CACHING_LOCATION>'
+
+
+# SEARCH for part with Digikey Part Number (dkpn)
+dkpn = '296-6501-1-ND'
+part = digiAPI.ProductInformation().product_details(dkpn)
+pprint(part.manufacturer_part_number)
+pprint(part.detailed_description)
+pprint(part.to_dict())
+
+
+
+def modelItem_to_dict_generator(collection):
+"""
+Create a lazy comprehension of an iterable collection of model items, effectively returning a generator.
+
+A response from a Digikey API query is often a list of Model items, objects of the particular class representing a model item.
+
+ THis does not get easily consumed into some useful objects such as a Pandas DataFrame that would typically take a dictionary object.
+
+ To convert a query response to a pandas list of model items as dictionary in an efficient manner I would suggest to use a lazy list comprehension, effectively returning a generator on the API response, that Pandas Dataframe can consume.
+
+"""
+    return(( item.to_dict() for item in collection))
+
+
+#TODO: put a link to API
+#Look up order history ,see the API for other named arguments that can be passed to the order_history or other queries
+orderHistory = digiAPI.OrderDetails().order_history(start_date="2019-01-01", end_date="2020-01-01")
+
+pd.DataFrame(modelItem_to_dict_generator(orderHistory))
+
+# Take the first item (salesorder ) in the Order_history and display the order lines
+firstSalesOrder =responseOrderHistory[0].salesorder_id
+orderStatus = digiAPI.OrderDetails().order_status(salesorder_id=firstSalesOrder)
+# display all the tracking URL's
+pprint([shippingDetail.tracking_url for shippingDetail in orderStatus.shipping_details])
+# produce a Dataframe of the line_items
+pd.DataFrame(modelItem_to_dict_generator(orderStatus.line_items))
+
+```

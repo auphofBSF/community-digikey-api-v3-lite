@@ -11,7 +11,7 @@ import digikey_productinformation
 
 from digikey_productinformation.rest import ApiException
 
-class Digikey_ProductInformation():
+class ProductInformation():
     def __init__(self):
         # Configure API key authorization: apiKeySecurity
         configuration = digikey_productinformation.Configuration()
