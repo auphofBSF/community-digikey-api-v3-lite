@@ -2,22 +2,16 @@
 ---------
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZHPF7ZLDCYEYY&source=url)
 
-A community initiative to automatically create  python clients for the Digikey set of API's 
-this application automates for the following API's.
+A community initiative to provide a lite wrapper for the Digikey set of API's  that handles all the necessary Authentication via the require Oauth2 Protocol.
+
 
     COMPLETED: productinformation
     COMPLETED: ordersupport
     TODO:barcode
     TODO:Ordering
 
-As they are all specified individually they are generated into individual projects and thus individual python module names. This project, the builder,  generates  all the api projects.
+THis uses that Swagger Codegen client api built by installing community-digikey-api-build-python-client
 
-The Digikey API specification in Swagger.json format is the basis of the generated python clients for each api
-The generation for each API is done by using the Swagger Codegen, a java application.
-
-When this package is installed its only purpose is to perform the fresh CodeGens of each api and then install them. At present they are installed in an editable manner
-
-The platform prerequisites are java and for python the package requirement is gitpython
 
 ------------
 ## IF THIS WORK BENEFITS YOU in a way that you can contribute to my time in supporting Open Source Community Benefiting Software then please contribute here. 
@@ -36,8 +30,6 @@ The platform prerequisites are java and for python the package requirement is gi
 ## Requirements.
 
 Python 3.4+
-Python Package GitPython
-Java 1.8+
 
 ## Installation
 
@@ -65,7 +57,7 @@ import digikey_api_v3_lite  as digiAPI
 from pprint import pprint
 
 
-
+# SETUP the Digikey authentication see TODO: provide link to http://developer.digkey.com........
 os.environ['DIGIKEY_CLIENT_ID'] = '<DIGIKEY_APPLICATION_ID>'
 os.environ['DIGIKEY_CLIENT_SECRET'] = '<DIGIKEY_SECRET>'
 os.environ['DIGIKEY_STORAGE_PATH'] = r'<PATH_TO_THE_TOKEN_CACHING_LOCATION>'
