@@ -35,8 +35,8 @@ class OrderDetails():
         # customer_id = 0 # int | CustomerId that is on the Digi-Key account with which you authenticated. If not provided, will  default to the first CustomerId on the Digi-Key account. (optional) (default to 0)
         # open_only = False # bool | If true will only return open orders. If false, will return open and closed orders. (optional) (default to false)
         # include_company_orders = False # bool | Include all company orders for the location associated with the given CustomerId. (optional) (default to false)
-        start_date = '2019-01-01' # str | Begining of date range in ISO 8601 format. For example: 2018-10-31 (optional) (default to )
-        end_date = '2020-01-01' # str | End of date range in ISO 8601 format. For example: 2018-10-31 (optional) (default to )
+        # start_date = '2019-01-01' # str | Begining of date range in ISO 8601 format. For example: 2018-10-31 (optional) (default to )
+        # end_date = '2020-01-01' # str | End of date range in ISO 8601 format. For example: 2018-10-31 (optional) (default to )
         # includes = '' # str | Comma separated list of fields to return. Used to customize response to reduce bandwidth with  fields that you do not wish to receive. For example: \"SalesOrderId,PurchaseOrder\" (optional)
 
 
