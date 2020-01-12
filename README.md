@@ -1,4 +1,4 @@
-# community-digikey-api-build-python-client
+# community-digikey-api-v3-lite
 ---------
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZHPF7ZLDCYEYY&source=url)
 
@@ -93,7 +93,7 @@ orderHistory = digiAPI.OrderDetails().order_history(start_date="2019-01-01", end
 pd.DataFrame(modelItem_to_dict_generator(orderHistory))
 
 # Take the first item (salesorder ) in the Order_history and display the order lines
-firstSalesOrder =responseOrderHistory[0].salesorder_id
+firstSalesOrder =orderHistory[0].salesorder_id
 orderStatus = digiAPI.OrderDetails().order_status(salesorder_id=firstSalesOrder)
 # display all the tracking URL's
 pprint([shippingDetail.tracking_url for shippingDetail in orderStatus.shipping_details])
