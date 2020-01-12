@@ -86,7 +86,7 @@ A response from a Digikey API query is often a list of Model items, objects of t
     return(( item.to_dict() for item in collection))
 
 
-#TODO: put a link to API
+#for further API info see https://developer.digikey.com/products
 #Look up order history ,see the API for other named arguments that can be passed to the order_history or other queries
 orderHistory = digiAPI.OrderDetails().order_history(start_date="2019-01-01", end_date="2020-01-01")
 
