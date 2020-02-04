@@ -54,10 +54,10 @@ see  requirements and installation for detail on the install procedures with reg
 This python package `community-digikey-api-v3-lite` is hosted on Github, you can install directly from Github
 
 ```sh
-pip install -e git+https://github.com/auphofBSF/community-digikey-api-build-python-client.git#egg=community-digikey-api-v3-lite
+pip install -e git+https://github.com/auphofBSF/community-digikey-api-v3-lite.git#egg=community-digikey-api-v3-lite
 
 ```
-(you may need to run `pip` with root permission: `sudo pip install -e git+https://github.com/auphofBSF/community-digikey-api-build-python-client.git#egg=community-digikey-api-v3-lite`
+(you may need to run `pip` with root permission: `sudo pip install -e git+https://github.com/auphofBSF/community-digikey-api-v3-lite.git#egg=community-digikey-api-v3-lite`
 
 Alternatively if this Repository is cloned into a local directory
 ```
