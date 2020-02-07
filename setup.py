@@ -54,7 +54,7 @@ setup(
     keywords=["Swagger", "Digikey Api"],
     install_requires=REQUIRES,
     package_dir={'': 'src'},
-    packages=find_packages(), #['digikey_api_v3_lite'], 
+    packages=find_packages('src'), #['digikey_api_v3_lite'], 
     include_package_data=True,
     long_description="""\
        This wrapper handles the Oauth2 protocol by leveraging the work done by @peeter123 in the digikey-apiV2 to access part information.
