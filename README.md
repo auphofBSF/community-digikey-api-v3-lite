@@ -42,6 +42,14 @@ see  requirements and installation for detail on the install procedures with reg
 
 ## Installation
 
+### Automatic Installation of all requirements
+
+```sh
+pip  install git+https://github.com/auphofBSF/community-digikey-api-v3-lite@DEV#egg=community-digikey-api-v3-lite
+```
+
+### Manual installlation of requirements for development
+
 1) First ensure the [community-digikey-api-codegen-python-clients](https://github.com/auphofBSF/community-digikey-api-codegen-python-clients) are installed
 2) Install digikey-api v1 modified to provide OAuth2 support for digikey V2
      `pip install -e git+https://github.com/auphofBSF/digikey-api.git@dev20w02apiV3#egg=digikey-api

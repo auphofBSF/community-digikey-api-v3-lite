@@ -39,6 +39,7 @@ VERSION = "0.1.0"
 REQUIRES = [
     # "community-digikey-api-client-productinformation @ git+https://github.com/auphofBSF/community-digikey-api-productinformation.git"
     # ,"community-digikey-api-client-ordersupport @ git+https://github.com/auphofBSF/community-digikey-api-ordersupport.git"
+    "requests",
     "digikey-api @ git+https://github.com/auphofBSF/digikey-api/@dev20w02apiV3",
     "community-digikey-api-codegen-python-clients @ git+https://github.com/auphofBSF/community-digikey-api-codegen-python-clients.git",
     
