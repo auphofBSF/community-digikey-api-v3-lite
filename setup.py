@@ -54,6 +54,7 @@ setup(
     url="https://github.com/auphofBSF/community-digikey-api-v3-lite",
     keywords=["Swagger", "Digikey Api"],
     install_requires=REQUIRES,
+    setup_requires=['requests'],
     package_dir={'': 'src'},
     packages=find_packages('src'), #['digikey_api_v3_lite'], 
     include_package_data=True,
