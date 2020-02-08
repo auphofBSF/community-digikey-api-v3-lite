@@ -4,17 +4,20 @@
 
 A community initiative to provide a lite wrapper for the Digikey set of API's  that handles all the necessary Authentication via the required Oauth2 Protocol.
 
-
+    Digikey API's implemented todate
     COMPLETED: productinformation
     COMPLETED: ordersupport
     TODO:barcode
     TODO:Ordering
 
 This module requires [community-digikey-api-codegen-python-clients](https://github.com/auphofBSF/community-digikey-api-codegen-python-clients)
- a module that takes the digikey API V3 Swagger specification and locally builds  a set of python digikey client api's through the Swagger-Codegen, a java application.  
+ a module that downloads the digikey API V3 Swagger specification files and locally builds  a set of python digikey client api's through the Swagger-Codegen, a java application.  
  
-These API clients don't have full OAuth2 protocol handling. The Client App authentication (Oauth2 Protocol) is handled by a customized fork of Github@peeter123's  digikey-api. This  is originally a python digikey api Version 1 module. This fork has been altered to support V2 and the branch (https://github.com/auphofBSF/digikey-api.git@dev20w02apiV3) is used by these modules to handle the authentication by OAuth2.
+ These generated python API's are created as individual installed modules. Installation is automatic by installing this module. `pip list` will display that they are installed
+ 
+These generated API clients don't have full OAuth2 protocol handling so the Client App authentication (Oauth2 Protocol) is presently handled by a customized fork of Github@peeter123's  digikey-api. This  is originally a python digikey api Version 1 module. This fork has been altered to support V2 and is located on the branch (https://github.com/auphofBSF/digikey-api.git@dev20w02apiV3). It is used by this module `digikey_api_v3_lite` to handle the authentication by OAuth2 and therefore provides a simple wrapper for the implemented API's.
 
+## Setup at  Digikey to access the API
 The necessary production application needs to be registered with https://developer.digikey.com . Creating a free account is linked to your digikey account after first login into https://digikey.com or your local account such as https://digikey.co.nz.  Then login/create account with https://developer.digikey.com  and then register an `App`  where you will be asked to establishes the OAuth2 callback url(recommended to use https://localhost) and the the registration generates the `Client Id` and `Client Secret` for the client app. You will want to enable the api's you require. Presently these modules only support `Product Information API` and `Order Support API` see: https://developer.digikey.com/documentation/organization
 
 see  requirements and installation for detail on the install procedures with regard to the 2 key requirements.
@@ -32,23 +35,26 @@ see  requirements and installation for detail on the install procedures with reg
 ## Versions
 - DIGIKEY API version: v3
 - community-digikey-api-codegen-python-clients,   version: 0.1.0
-- 
+- digikey-api (branch dev20w02apiV3)
 
-## Requirements.
+## Requirements in General
 
-1) Python 3.4+
-2) [community-digikey-api-codegen-python-clients](https://github.com/auphofBSF/community-digikey-api-codegen-python-clients)
-3) [digikey-api V1 -Custom Branch](https://github.com/auphofBSF/digikey-api.git@dev20w02apiV3) (extended for OAuth authentication to digikey API V2)
+1) Python 3.4+ (tested on 3.6.9)
+2) Additional for examples (see example/example-requirements.txt)
+   
+## Requirements for this package
+1) [community-digikey-api-codegen-python-clients](https://github.com/auphofBSF/community-digikey-api-codegen-python-clients) automatically generates `community-digikey-api-productinformation` and `community-digikey-api-ordersupport`
+2) [digikey-api  -Custom Branch](https://github.com/auphofBSF/digikey-api.git@dev20w02apiV3) (extended for OAuth authentication to digikey API V3)
 
 ## Installation
 
 ### Automatic Installation of all requirements
 
 ```sh
-pip  install git+https://github.com/auphofBSF/community-digikey-api-v3-lite@DEV#egg=community-digikey-api-v3-lite
+pip  install git+https://github.com/auphofBSF/community-digikey-api-v3-lite@master
 ```
 
-### Manual installlation of requirements for development
+### Manual installlation of requirements or  development configuration
 
 1) First ensure the [community-digikey-api-codegen-python-clients](https://github.com/auphofBSF/community-digikey-api-codegen-python-clients) are installed
 2) Install digikey-api v1 modified to provide OAuth2 support for digikey V2
@@ -77,10 +83,12 @@ pip install -e .
 
 ## Usage
 
-additional requirements for the `example/example.py` that need to be installed by your package manager of choice, `conda install -r /example/example-requirements.txt` or `pip install -r /example/example-requirements.txt` where `<mod>` is one of the following
+additional requirements for the `example/example.py` that need to be installed by your package manager of choice, `conda install -r example/example-requirements.txt` or `pip install -r example/example-requirements.txt`
 
     pandas >= 1.0.0
-    tabulate >= 0.8.6
+    tabulate >= 0.8.3
+
+alternatively `conda install pandas>=1.0.0 tabulate>=0.8.3`
 
 Copy and paste the following into a python code file or use the `example/example.py`
 
@@ -162,7 +170,20 @@ Sales Order Line Items:
 """
 )
 
-
-
-
 ```
+
+
+# OUTSTANDING ITEMS (TODO's& FIX's)
+1) improve the api wrapper, extend api modelItems collections such that they can be consumed by the likes of pandas
+   ```python 
+   # from example/example.py
+   def modelItem_to_dict_generator(collection):
+    """Create a lazy comprehension of an iterable collection of model items, effectively returning a generator.
+    A response from a Digikey API query is often a list of Model items, objects of the particular class representing a model item.
+    THis does not get easily consumed into some useful objects such as a Pandas DataFrame that would typically take a dictionary object.
+    To convert a query response to a pandas list of model items as dictionary in an efficient manner I would suggest to use a lazy list comprehension, effectively returning a generator on the API response, that Pandas Dataframe can consume.
+
+    """
+    return(( item.to_dict() for item in collection))
+    ```
+2) TESTS /UnitTests
